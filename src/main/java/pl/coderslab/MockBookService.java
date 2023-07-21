@@ -12,6 +12,7 @@ public class MockBookService implements BookService {
 
     private static Long nextId = 4L;
     private List<Book> list;
+
     public MockBookService() {
         list = new ArrayList<>();
         list.add(new Book(1L, "9788324631766", "Thiniking	in	Java", "Bruce	Eckel", "Helion", "programming"));
@@ -20,16 +21,24 @@ public class MockBookService implements BookService {
         list.add(new Book(3L, "9780130819338", "Java	2.	Podstawy", "Cay	Horstmann,	Gary	Cornell", "Helion",
                 "programming"));
     }
+
     @Override
-    public List<Book> allBooks(){
+    public List<Book> getBooks() {
+        return null;
+    }
+
+    @Override
+    public List<Book> allBooks() {
         return list;
     }
+
     @Override
-    public Optional <Book> findBook(long id) {
-        return list.stream().filter(e->e.getId().equals(id)).findFirst();
+    public Optional<Book> findBook(long id) {
+        return list.stream().filter(e -> e.getId().equals(id)).findFirst();
     }
+
     @Override
-    public void add(Book book){
+    public void add(Book book) {
         book.setId(nextId);
         list.add(book);
         nextId += 1;
@@ -37,15 +46,15 @@ public class MockBookService implements BookService {
 
     @Override
     public void update(Book book) {
-        if(this.findBook(book.getId()).isPresent()){
+        if (this.findBook(book.getId()).isPresent()) {
             int index = list.indexOf(findBook(book.getId()).get());
-            list.set(index,book);
+            list.set(index, book);
         }
     }
 
     @Override
     public void delete(long id) {
-        if(findBook(id).isPresent()){
+        if (findBook(id).isPresent()) {
             list.remove(findBook(id).get());
         }
 

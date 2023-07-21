@@ -4,9 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookService {
-    public List<Book> allBooks();
-    public Optional <Book> findBook(long id);
-    public void add(Book book);
-    public void update(Book book);
-    public void delete(long id);
+    List<Book> getBooks();
+
+    List<Book> allBooks();
+
+    Optional<Book> findBook(long id);
+
+    void add(Book book);
+
+    void update(Book book);
+
+    void delete(long id);
 }
